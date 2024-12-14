@@ -13,6 +13,7 @@ class simularityScore
             die('SplFileObject : '.$exception->getMessage());
         }
         $i=0;
+        $sum = 0;
         $array1 = array();
         $array2 = array();
         while ($open_file->valid()) {
@@ -23,7 +24,15 @@ class simularityScore
                 $i++;
             }
         }
-        echo "sum = $sum".PHP_EOL;;
+        sort($array1);
+        sort($array2);
+        $array4 = array_count_values($array2);
+        for($j=0; $j<count($array1); $j++) {
+            if (array_key_exists($array1[$j], $array4)) {
+                $sum += $array1[$j] * $array4[$array1[$j]];
+            }
+        }
+        echo "sum = $sum".PHP_EOL;
     }
 }
 
