@@ -2,13 +2,14 @@
 
 class simularityScore
 {
-    public string $file = "file.txt";
+    public string $file = "day_1.txt";
+    public string $path = "../../inputs/";
     private array $difference = [];
 
     public function __construct()
     {
         try {
-            $open_file = new SplFileObject($this->file);
+            $open_file = new SplFileObject($this->path.$this->file);
         } catch (LogicException $exception) {
             die('SplFileObject : '.$exception->getMessage());
         }

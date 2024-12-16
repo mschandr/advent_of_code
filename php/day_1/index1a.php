@@ -2,13 +2,14 @@
 
 class calculateDifference
 {
-    public string $file = "file.txt";
+    public string $file = "day_1.txt";
+    public string $path = "../../inputs/";
     private array $difference = [];
 
     public function __construct()
     {
         try {
-            $open_file = new SplFileObject($this->file);
+            $open_file = new SplFileObject($this->path.$this->file);
         } catch (LogicException $exception) {
             die('SplFileObject : '.$exception->getMessage());
         }
@@ -16,7 +17,7 @@ class calculateDifference
         $array1 = array();
         $array2 = array();
         while ($open_file->valid()) {
-            $parts = explode(" ", $open_file->fgets());
+            $parts = explode(" ", trim($open_file->fgets()));
             if (count($parts)>2) {
                 $array1[$i] = $parts[0];
                 $array2[$i] = $parts[3];
